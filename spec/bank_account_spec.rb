@@ -28,5 +28,9 @@ describe BankAccount do
       expect { @bank_account.deposit(5) }.to change { @bank_account.balance }.by(5)
       expect(@bank_account.current_balance).to eq 'Your current balance is £5.00'
     end
+
+    it 'raise error if trying to deposit a negative amount' do
+      expect { @bank_account.deposit(-5) }.to raise_error 'Please deposit a positive amount'
+    end
   end
 end

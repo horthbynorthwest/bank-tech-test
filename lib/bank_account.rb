@@ -8,6 +8,7 @@ class BankAccount
   end
 
   def deposit(num)
+    fail 'Please deposit a positive amount' if num < 0
     @balance += num
   end
 
