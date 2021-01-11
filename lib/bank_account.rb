@@ -8,11 +8,17 @@ class BankAccount
   end
 
   def deposit(num)
-    fail 'Please deposit a positive amount' if num < 0
+    pos_deposit(num)
     @balance += num
   end
 
   def current_balance
     "Your current balance is £#{format('%.2f', @balance)}"
+  end
+
+  private
+
+  def pos_deposit(num)
+    fail 'Please deposit a positive amount' if num < 0
   end
 end
