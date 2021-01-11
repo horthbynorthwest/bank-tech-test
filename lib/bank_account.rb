@@ -16,6 +16,7 @@ class BankAccount
 
   def withdraw(num)
     is_positive?(num)
+    is_overdrawn?(num)
     @balance -= num
     @transactions << { date: Time.now.strftime("%d/%m/%Y"), credit: 0, debit: num, balance: @balance }
   end
@@ -35,5 +36,9 @@ class BankAccount
 
   def is_positive?(num)
     fail 'Please enter a positive amount' if num.negative?
+  end
+
+  def is_overdrawn?(num)
+    fail 'This will overdraw your account' if (@balance - num).negative?
   end
 end

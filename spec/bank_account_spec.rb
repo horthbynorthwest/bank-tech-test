@@ -50,6 +50,10 @@ describe BankAccount do
     it 'raise error if trying to withdraw a negative amount' do
       expect { @funded_account.withdraw(-5) }.to raise_error 'Please enter a positive amount'
     end
+
+    it 'raises an error if trying to withdraw more than the balance' do
+      expect { @funded_account.withdraw(20) }.to raise_error 'This will overdraw your account'
+    end
   end
 
   describe '#print_statment' do
