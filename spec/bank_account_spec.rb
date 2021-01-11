@@ -64,19 +64,25 @@ describe BankAccount do
     it 'should print out a deposit transaction' do
       @bank_account.deposit(100)
       expect(@bank_account.current_balance).to eq 'Your current balance is £100.00'
-      expect { @bank_account.print_statment }.to output("date || credit || debit || balance\n10/01/2021 || 100.00 || 0.00 || 100.00\n").to_stdout
+      expect do
+        @bank_account.print_statment
+      end.to output("date || credit || debit || balance\n10/01/2021 || 100.00 || 0.00 || 100.00\n").to_stdout
     end
 
     it 'should print put a withdraw transaction' do
       a = BankAccount.new(100)
       a.withdraw(50)
-      expect { a.print_statment }.to output("date || credit || debit || balance\n11/01/2021 || 0.00 || 50.00 || 50.00\n").to_stdout
+      expect do
+        a.print_statment
+      end.to output("date || credit || debit || balance\n11/01/2021 || 0.00 || 50.00 || 50.00\n").to_stdout
     end
 
     it 'should print out both deposit & withdraw transactions' do
       @bank_account.deposit(100)
       @bank_account.withdraw(50)
-      expect { @bank_account.print_statment }.to output("date || credit || debit || balance\n11/01/2021 || 0.00 || 50.00 || 50.00\n10/01/2021 || 100.00 || 0.00 || 100.00\n").to_stdout
+      expect do
+        @bank_account.print_statment
+      end.to output("date || credit || debit || balance\n11/01/2021 || 0.00 || 50.00 || 50.00\n10/01/2021 || 100.00 || 0.00 || 100.00\n").to_stdout
     end
   end
 end
