@@ -8,8 +8,13 @@ class BankAccount
   end
 
   def deposit(num)
-    pos_deposit(num)
+    is_positive?(num)
     @balance += num
+  end
+
+  def withdraw(num)
+    is_positive?(num)
+    @balance -= num
   end
 
   def current_balance
@@ -18,7 +23,7 @@ class BankAccount
 
   private
 
-  def pos_deposit(num)
-    fail 'Please deposit a positive amount' if num < 0
+  def is_positive?(num)
+    fail 'Please enter a positive amount' if num.negative?
   end
 end

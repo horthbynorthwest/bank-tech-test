@@ -20,7 +20,7 @@ describe BankAccount do
   end
 
   describe '#deposit' do
-    it 'should respond respond with 1 argument' do
+    it 'should respond with 1 argument' do
       expect(@bank_account).to respond_to(:deposit).with(1).argument
     end
 
@@ -30,7 +30,26 @@ describe BankAccount do
     end
 
     it 'raise error if trying to deposit a negative amount' do
-      expect { @bank_account.deposit(-5) }.to raise_error 'Please deposit a positive amount'
+      expect { @bank_account.deposit(-5) }.to raise_error 'Please enter a positive amount'
+    end
+  end
+
+  describe '#withdraw' do
+    before(:each) do
+      @funded_account = BankAccount.new(15)
+    end
+    it 'should respond with 1 argument' do
+      expect(@bank_account).to respond_to(:withdraw).with(1).argument
+    end
+
+    it 'should decrease balance by number given' do
+      a = BankAccount.new(15)
+      expect { @funded_account.withdraw(5) }.to change { @funded_account.balance }.by(-5)
+      expect(@funded_account.current_balance).to eq 'Your current balance is £10.00'
+    end
+
+    it 'raise error if trying to withdraw a negative amount' do
+      expect { @funded_account.withdraw(-5) }.to raise_error 'Please enter a positive amount'
     end
   end
 end
