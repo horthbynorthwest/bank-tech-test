@@ -25,7 +25,7 @@ class BankAccount
     "Your current balance is £#{format('%.2f', @balance)}"
   end
 
-  def print_statment
+  def print_statement
     puts 'date || credit || debit || balance'
     @transactions.reverse.each do |t|
       puts "#{t[:date]} || #{'%.2f' % t[:credit]} || #{'%.2f' % t[:debit]} || #{'%.2f' % t[:balance]}"
