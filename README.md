@@ -54,7 +54,7 @@ I want to be able to deposit money into my account.
 
 As a User,
 So I can access my money,
-I want to be able to deposite money into my account.
+I want to be able to withdraw money from my account.
 
 As a User,
 So I can see how much money I have in my account,
