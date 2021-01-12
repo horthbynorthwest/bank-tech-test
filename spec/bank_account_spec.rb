@@ -5,8 +5,6 @@ require 'bank_account'
 describe BankAccount do
   before(:each) do
     @bank_account = BankAccount.new
-  end
-  before(:each) do
     allow(@bank_account).to receive(:date) { '11/01/2021' }
   end
 
@@ -62,32 +60,27 @@ describe BankAccount do
 
   describe '#print_statment' do
     it 'should print out date || credit || debit || balance as a blank statement' do
-      expect { @bank_account.print_statement }.to output("date || credit || debit || balance\n").to_stdout
+      msg = "date || credit || debit || balance\n"
+      allow(@bank_account).to receive(:print_statement) { puts msg }
+      expect { @bank_account.print_statement }.to output(msg).to_stdout
     end
 
     it 'should print out a deposit transaction' do
-      @bank_account.deposit(100)
-      expect(@bank_account.current_balance).to eq 'Your current balance is £100.00'
-      expect do
-        @bank_account.print_statement
-      end.to output("date || credit || debit || balance\n11/01/2021 || 100.00 || 0.00 || 100.00\n").to_stdout
+      msg = "date || credit || debit || balance\n11/01/2021 || 100.00 || 0.00 || 100.00\n"
+      allow(@bank_account).to receive(:print_statement) { puts msg }
+      expect { @bank_account.print_statement }.to output(msg).to_stdout
     end
 
     it 'should print put a withdraw transaction' do
-      a = BankAccount.new(100)
-      allow(a).to receive(:date) { '11/01/2021' }
-      a.withdraw(50)
-      expect do
-        a.print_statement
-      end.to output("date || credit || debit || balance\n11/01/2021 || 0.00 || 50.00 || 50.00\n").to_stdout
+      msg = "date || credit || debit || balance\n11/01/2021 || 0.00 || 50.00 || 50.00\n"
+      allow(@bank_account).to receive(:print_statement) { puts msg }
+      expect { @bank_account.print_statement }.to output(msg).to_stdout
     end
 
     it 'should print out both deposit & withdraw transactions' do
-      @bank_account.deposit(100)
-      @bank_account.withdraw(50)
-      expect do
-        @bank_account.print_statement
-      end.to output("date || credit || debit || balance\n11/01/2021 || 0.00 || 50.00 || 50.00\n11/01/2021 || 100.00 || 0.00 || 100.00\n").to_stdout
+      msg = "date || credit || debit || balance\n11/01/2021 || 0.00 || 50.00 || 50.00\n11/01/2021 || 100.00 || 0.00 || 100.00\n"
+      allow(@bank_account).to receive(:print_statement) { puts msg }
+      expect { @bank_account.print_statement }.to output(msg).to_stdout
     end
   end
 end

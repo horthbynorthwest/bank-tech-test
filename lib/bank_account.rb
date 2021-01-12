@@ -29,10 +29,8 @@ class BankAccount
   end
 
   def print_statement
-    puts 'date || credit || debit || balance'
-    @transactions.reverse.each do |t|
-      puts "#{t[:date]} || #{'%.2f' % t[:credit]} || #{'%.2f' % t[:debit]} || #{'%.2f' % t[:balance]}"
-    end
+    print = @statement.new(@transactions)
+    print.print_statement
   end
 
   private
