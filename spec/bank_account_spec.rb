@@ -6,6 +6,10 @@ describe BankAccount do
   before(:each) do
     @bank_account = BankAccount.new
   end
+  before(:each) do
+    allow(@bank_account).to receive(:date) { '11/01/2021' }
+  end
+
   it 'an instance can be made of account' do
     expect(@bank_account).to be_instance_of BankAccount
   end
@@ -66,11 +70,12 @@ describe BankAccount do
       expect(@bank_account.current_balance).to eq 'Your current balance is £100.00'
       expect do
         @bank_account.print_statement
-      end.to output("date || credit || debit || balance\n10/01/2021 || 100.00 || 0.00 || 100.00\n").to_stdout
+      end.to output("date || credit || debit || balance\n11/01/2021 || 100.00 || 0.00 || 100.00\n").to_stdout
     end
 
     it 'should print put a withdraw transaction' do
       a = BankAccount.new(100)
+      allow(a).to receive(:date) { '11/01/2021' }
       a.withdraw(50)
       expect do
         a.print_statement
@@ -82,7 +87,7 @@ describe BankAccount do
       @bank_account.withdraw(50)
       expect do
         @bank_account.print_statement
-      end.to output("date || credit || debit || balance\n11/01/2021 || 0.00 || 50.00 || 50.00\n10/01/2021 || 100.00 || 0.00 || 100.00\n").to_stdout
+      end.to output("date || credit || debit || balance\n11/01/2021 || 0.00 || 50.00 || 50.00\n11/01/2021 || 100.00 || 0.00 || 100.00\n").to_stdout
     end
   end
 end

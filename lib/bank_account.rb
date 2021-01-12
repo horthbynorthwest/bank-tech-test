@@ -9,16 +9,16 @@ class BankAccount
   end
 
   def deposit(num)
-    is_positive?(num)
+    positive?(num)
     @balance += num
-    @transactions << { date: (Time.now - 86_400).strftime('%d/%m/%Y'), credit: num, debit: 0, balance: @balance }
+    @transactions << { date: date, credit: num, debit: 0, balance: @balance }
   end
 
   def withdraw(num)
-    is_positive?(num)
-    is_overdrawn?(num)
+    positive?(num)
+    overdrawn?(num)
     @balance -= num
-    @transactions << { date: Time.now.strftime('%d/%m/%Y'), credit: 0, debit: num, balance: @balance }
+    @transactions << { date: date, credit: 0, debit: num, balance: @balance }
   end
 
   def current_balance
@@ -34,11 +34,15 @@ class BankAccount
 
   private
 
-  def is_positive?(num)
+  def date
+    Time.now.strftime('%d/%m/%Y')
+  end
+
+  def positive?(num)
     raise 'Please enter a positive amount' if num.negative?
   end
 
-  def is_overdrawn?(num)
+  def overdrawn?(num)
     raise 'This will overdraw your account' if (@balance - num).negative?
   end
 end
