@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'bank_account'
 require 'statement'
 
 describe 'example transaction' do
-
   it 'programme displays statement correctly' do
     @bank_account = BankAccount.new
     allow(@bank_account).to receive(:date) { '11/01/2021' }

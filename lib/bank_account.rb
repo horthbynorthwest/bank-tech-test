@@ -25,7 +25,7 @@ class BankAccount
   end
 
   def current_balance
-    "Your current balance is £#{format('%.2f', @balance)}"
+    "Your current balance is £#{format(@balance)}"
   end
 
   def print_statement
@@ -34,6 +34,10 @@ class BankAccount
   end
 
   private
+
+  def format(num)
+    '%.2f' % num
+  end
 
   def date
     Time.now.strftime('%d/%m/%Y')
