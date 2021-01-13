@@ -4,6 +4,13 @@ require_relative 'bank_account'
 
 class Statement
 
+  def show_statement(list)
+    header
+    statement_content(list)
+  end
+
+  private
+
   def header
     puts 'date || credit || debit || balance'
   end
@@ -13,13 +20,6 @@ class Statement
       puts "#{t[:date]} || #{format(t[:credit])} || #{format(t[:debit])} || #{format(t[:balance])}"
     end
   end
-
-  def show_statement(list)
-    header
-    statement_content(list)
-  end
-
-  private
 
   def format(num)
     '%.2f' % num
