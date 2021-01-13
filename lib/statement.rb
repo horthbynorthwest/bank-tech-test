@@ -3,23 +3,20 @@
 require_relative 'bank_account'
 
 class Statement
-  def initialize(list)
-    @list = list
-  end
 
   def header
     puts 'date || credit || debit || balance'
   end
 
-  def statement_content
-    @list.reverse.each do |t|
+  def statement_content(list)
+    list.reverse.each do |t|
       puts "#{t[:date]} || #{format(t[:credit])} || #{format(t[:debit])} || #{format(t[:balance])}"
     end
   end
 
-  def print_statement
+  def print_statement(list)
     header
-    statement_content
+    statement_content(list)
   end
 
   private

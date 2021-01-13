@@ -29,8 +29,8 @@ class BankAccount
   end
 
   def print_statement
-    print = @statement.new(@transactions)
-    print.print_statement
+    print = @statement.new
+    print.print_statement(@transactions)
   end
 
   private
