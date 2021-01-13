@@ -13,14 +13,14 @@ class BankAccount
 
   def deposit(num)
     positive?(num)
-    @balance += num
+    change_balance('credit', num)
     @transactions << { date: date, credit: num, debit: 0, balance: @balance }
   end
 
   def withdraw(num)
     positive?(num)
     overdrawn?(num)
-    @balance -= num
+    change_balance('debit', num)
     @transactions << { date: date, credit: 0, debit: num, balance: @balance }
   end
 
@@ -34,6 +34,10 @@ class BankAccount
   end
 
   private
+
+  def change_balance(type_of_transaction, num)
+    type_of_transaction == 'credit' ? @balance += num : @balance -= num
+  end
 
   def format(num)
     '%.2f' % num
