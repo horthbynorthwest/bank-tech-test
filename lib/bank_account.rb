@@ -21,7 +21,7 @@ class BankAccount
   def withdraw(num)
     positive?(num)
     overdrawn?(num)
-    change_balance('debit', num) 
+    change_balance('debit', num)
     @transactions << create_debit_transaction(num, date)
   end
 

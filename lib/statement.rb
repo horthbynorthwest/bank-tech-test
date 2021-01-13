@@ -3,7 +3,6 @@
 require_relative 'bank_account'
 
 class Statement
-
   def show_statement(list)
     header
     statement_content(list)

@@ -26,7 +26,6 @@ describe BankAccount do
   end
 
   describe '#deposit' do
-
     it 'should increase balance by number given' do
       expect { @bank_account.deposit(5) }.to change { @bank_account.balance }.by(5)
       expect(@bank_account.current_balance).to eq 'Your current balance is £5.00'
@@ -71,7 +70,7 @@ describe BankAccount do
   describe '#show_statment' do
     it 'should print out date || credit || debit || balance as a blank statement' do
       msg = "date || credit || debit || balance\n"
-    allow(@statement_double).to receive(:show_statement) { puts msg }
+      allow(@statement_double).to receive(:show_statement) { puts msg }
       expect { @bank_account.show_statement }.to output(msg).to_stdout
     end
 
