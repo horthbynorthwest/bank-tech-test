@@ -28,9 +28,9 @@ class BankAccount
     "Your current balance is £#{format(@balance)}"
   end
 
-  def print_statement
+  def show_statement
     print = @statement.new
-    print.print_statement(@transactions)
+    print.show_statement(@transactions)
   end
 
   private

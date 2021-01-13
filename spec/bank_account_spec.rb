@@ -58,29 +58,29 @@ describe BankAccount do
     end
   end
 
-  describe '#print_statment' do
+  describe '#show_statment' do
     it 'should print out date || credit || debit || balance as a blank statement' do
       msg = "date || credit || debit || balance\n"
-      allow(@bank_account).to receive(:print_statement) { puts msg }
-      expect { @bank_account.print_statement }.to output(msg).to_stdout
+      allow(@bank_account).to receive(:show_statement) { puts msg }
+      expect { @bank_account.show_statement }.to output(msg).to_stdout
     end
 
     it 'should print out a deposit transaction' do
       msg = "date || credit || debit || balance\n11/01/2021 || 100.00 || 0.00 || 100.00\n"
-      allow(@bank_account).to receive(:print_statement) { puts msg }
-      expect { @bank_account.print_statement }.to output(msg).to_stdout
+      allow(@bank_account).to receive(:show_statement) { puts msg }
+      expect { @bank_account.show_statement }.to output(msg).to_stdout
     end
 
     it 'should print put a withdraw transaction' do
       msg = "date || credit || debit || balance\n11/01/2021 || 0.00 || 50.00 || 50.00\n"
-      allow(@bank_account).to receive(:print_statement) { puts msg }
-      expect { @bank_account.print_statement }.to output(msg).to_stdout
+      allow(@bank_account).to receive(:show_statement) { puts msg }
+      expect { @bank_account.show_statement }.to output(msg).to_stdout
     end
 
     it 'should print out both deposit & withdraw transactions' do
       msg = "date || credit || debit || balance\n11/01/2021 || 0.00 || 50.00 || 50.00\n11/01/2021 || 100.00 || 0.00 || 100.00\n"
-      allow(@bank_account).to receive(:print_statement) { puts msg }
-      expect { @bank_account.print_statement }.to output(msg).to_stdout
+      allow(@bank_account).to receive(:show_statement) { puts msg }
+      expect { @bank_account.show_statement }.to output(msg).to_stdout
     end
   end
 end

@@ -14,7 +14,7 @@ class Statement
     end
   end
 
-  def print_statement(list)
+  def show_statement(list)
     header
     statement_content(list)
   end
