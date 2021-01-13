@@ -6,8 +6,13 @@ describe Transaction do
     @withdraw_transaction = Transaction.new(date: '11/01/2021', credit: 0, debit: 500, balance: 500)
   end
 
-  it 'should initalize with a date' do
+  it "should know the transaction's a date" do
     expect(@deposit_transaction.date).to eq '11/01/2021'
     expect(@withdraw_transaction.date).to eq '11/01/2021'
+  end
+
+  it "should know the transaction's credit" do
+    expect(@deposit_transaction.credit).to eq 1000
+    expect(@withdraw_transaction.credit).to eq 0
   end
 end
