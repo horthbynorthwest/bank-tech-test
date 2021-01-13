@@ -11,8 +11,18 @@ describe Transaction do
     expect(@withdraw_transaction.date).to eq '11/01/2021'
   end
 
-  it "should know the transaction's credit" do
+  it "should know the transaction's credit amount" do
     expect(@deposit_transaction.credit).to eq 1000
     expect(@withdraw_transaction.credit).to eq 0
+  end
+
+  it "should know the transaction's debit amount" do
+    expect(@deposit_transaction.debit).to eq 0
+    expect(@withdraw_transaction.debit).to eq 500
+  end
+
+  it "should know the transaction's balace amount" do
+    expect(@deposit_transaction.balance).to eq 1000
+    expect(@withdraw_transaction.balance).to eq 500
   end
 end
