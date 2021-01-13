@@ -6,7 +6,9 @@ describe BankAccount do
   before(:each) do
     @statement_double = double :statement
     statement_class_double = double :statement_class, new: @statement_double
-    @bank_account = BankAccount.new(0, statement_class_double)
+    @transaction_double = double :transaction
+    transaction_class_double = double :transaction_class, new: @transaction_double
+    @bank_account = BankAccount.new(0, statement_class_double, transaction_class_double)
     allow(@bank_account).to receive(:date) { '11/01/2021' }
   end
 
@@ -33,6 +35,12 @@ describe BankAccount do
     it 'raise error if trying to deposit a negative amount' do
       expect { @bank_account.deposit(-5) }.to raise_error 'Please enter a positive amount'
     end
+
+    it 'puts an instance of transaction class into the transactions array' do
+      allow(@bank_account).to receive(:create_credit_transaction) { @transaction_double }
+      @bank_account.deposit(5)
+      expect(@bank_account.transactions[0]).to eq @transaction_double
+    end
   end
 
   describe '#withdraw' do
@@ -52,18 +60,24 @@ describe BankAccount do
     it 'raises an error if trying to withdraw more than the balance' do
       expect { @funded_account.withdraw(20) }.to raise_error 'This will overdraw your account'
     end
+
+    it 'puts an instance of transaction class into the transactions array' do
+      allow(@bank_account).to receive(:create_debit_transaction) { @transaction_double }
+      @bank_account.deposit(5)
+      expect(@bank_account.transactions[0]).to eq @transaction_double
+    end
   end
 
   describe '#show_statment' do
     it 'should print out date || credit || debit || balance as a blank statement' do
       msg = "date || credit || debit || balance\n"
-    allow(@statement_double).to receive(:show_statement) { puts msg}
+    allow(@statement_double).to receive(:show_statement) { puts msg }
       expect { @bank_account.show_statement }.to output(msg).to_stdout
     end
 
     it 'should print out a deposit transaction' do
       msg = "date || credit || debit || balance\n11/01/2021 || 100.00 || 0.00 || 100.00\n"
-      allow(@statement_double).to receive(:show_statement) { puts msg}
+      allow(@statement_double).to receive(:show_statement) { puts msg }
       @bank_account.deposit(100)
 
       expect { @bank_account.show_statement }.to output(msg).to_stdout
