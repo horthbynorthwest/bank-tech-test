@@ -7,7 +7,7 @@ Clone, then:
 $ bundle install
 $ rspec
 ```
-You should see 14 passing rspec tests.
+You should see 20 passing rspec tests.
 
 ---
 #### To use in irb
@@ -20,7 +20,7 @@ Then create a new instance of the bank account class and all the methods to meet
 
 I broke this down into [User Stories](#User-Stories) to help guide my process. From there I planned out what would be needed using a class diagram.
 
-<img width="317" alt="Class diagram" src="https://user-images.githubusercontent.com/71782749/104311517-376f4500-54cd-11eb-9783-02a4c14bbd5e.png">
+<img width="1131" alt="Screenshot 2021-01-13 at 18 28 29" src="https://user-images.githubusercontent.com/71782749/104493747-68cf3a00-55cd-11eb-9c4e-b9907ed79d4c.png">
 
 From there I used TDD to follow these user stories to build from the ground up one user story at a time. This allowed  me to keep my code simple and concise.
 
