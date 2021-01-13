@@ -17,7 +17,7 @@ class Statement
 
   def statement_content(list)
     list.reverse.each do |t|
-      puts "#{t[:date]} || #{format(t[:credit])} || #{format(t[:debit])} || #{format(t[:balance])}"
+      puts "#{t.date} || #{format(t.credit)} || #{format(t.debit)} || #{format(t.balance)}"
     end
   end
 

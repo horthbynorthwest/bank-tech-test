@@ -2,6 +2,7 @@
 
 require 'bank_account'
 require 'statement'
+require 'transaction'
 
 describe 'example transaction' do
   it 'programme displays statement correctly' do

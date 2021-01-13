@@ -4,8 +4,9 @@ require 'statement'
 
 describe Statement do
   before(:each) do
-    @transactions = double(list: [{ date: '11/01/2021', credit: 1000, debit: 0, balance: 1000 },
-                                  { date: '11/01/2021', credit: 0, debit: 500, balance: 500 }])
+    @credit_transaction = double(date: '11/01/2021', credit: 1000, debit: 0, balance: 1000)
+    @debit_transaction = double(date: '11/01/2021', credit: 0, debit: 500, balance: 500)
+    @transactions = double(list: [@credit_transaction, @debit_transaction])
     @statement = Statement.new
   end
 

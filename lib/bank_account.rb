@@ -5,23 +5,24 @@ require_relative 'statement'
 class BankAccount
   attr_reader :balance
 
-  def initialize(balance = 0, statement = Statement)
+  def initialize(balance = 0, statement = Statement, transaction = Transaction)
     @balance = balance
     @transactions = []
     @statement = statement
+    @transaction = transaction
   end
 
   def deposit(num)
     positive?(num)
     change_balance('credit', num)
-    @transactions << { date: date, credit: num, debit: 0, balance: @balance }
+    @transactions << create_debit_transaction(num, date)
   end
 
   def withdraw(num)
     positive?(num)
     overdrawn?(num)
     change_balance('debit', num)
-    @transactions << { date: date, credit: 0, debit: num, balance: @balance }
+    @transactions << create_credit_transaction(num, date)
   end
 
   def current_balance
@@ -34,6 +35,14 @@ class BankAccount
   end
 
   private
+
+  def create_debit_transaction(num, date)
+    @transaction.new(date: date, credit: num, debit: 0, balance: @balance)
+  end
+
+  def create_credit_transaction(num, date)
+    @transaction.new(date: date, credit: 0, debit: num, balance: @balance)
+  end
 
   def change_balance(type_of_transaction, num)
     type_of_transaction == 'credit' ? @balance += num : @balance -= num
